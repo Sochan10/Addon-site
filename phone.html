@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>スマホアドオン | そーちゃん製アドオン</title>
+
+  <!-- トップページと同じCSSを使用 -->
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* 詳細ページ専用のデザイン */
+    .detail-wrap {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 24px 18px 45px;
+      box-sizing: border-box;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 18px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.75);
+      color: #526b99;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(70,100,160,0.1);
+    }
+
+    .detail-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(70,90,150,0.12);
+      box-sizing: border-box;
+    }
+
+    .detail-header {
+      text-align: center;
+    }
+
+    .detail-icon {
+      display: block;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 25px;
+      margin: 0 auto 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+    }
+
+    .detail-title {
+      font-size: 27px;
+      color: #526b99;
+      margin: 8px 0;
+    }
+
+    .detail-subtitle {
+      color: #777e99;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .detail-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .info-item {
+      background: #f3f5ff;
+      border-radius: 15px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .info-label {
+      font-size: 12px;
+      color: #888da5;
+      margin-bottom: 6px;
+    }
+
+    .info-value {
+      font-size: 15px;
+      font-weight: bold;
+      color: #52618c;
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: #526b99;
+      margin: 0 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e5e9ff;
+    }
+
+    .detail-text {
+      color: #626980;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .feature-item {
+      background: #f5f6ff;
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 12px;
+    }
+
+    .feature-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-item h3 {
+      color: #596c9c;
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+
+    .feature-item p {
+      color: #70768c;
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .notice-item {
+      background: #fff8e9;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      color: #806b4b;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .download-button {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 17px;
+      padding: 17px 20px;
+      border-radius: 18px;
+      background: linear-gradient(110deg, #55c6e9, #9b91ed);
+      box-shadow: 0 6px 16px rgba(100,140,220,0.25);
+      margin-top: 20px;
+    }
+
+    .download-button:active {
+      transform: scale(0.98);
+    }
+
+    .download-note {
+      font-size: 12px;
+      color: #858ba0;
+      text-align: center;
+      line-height: 1.8;
+      margin-top: 12px;
+    }
+
+    .update-item {
+      border-left: 3px solid #a5b6ed;
+      padding: 3px 0 3px 14px;
+      margin-bottom: 16px;
+    }
+
+    .update-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .update-date {
+      font-size: 12px;
+      color: #8a91aa;
+      margin-bottom: 5px;
+    }
+
+    .update-text {
+      font-size: 14px;
+      color: #626980;
+      line-height: 1.8;
+    }
+
+    .detail-footer {
+      text-align: center;
+      padding: 15px 0;
+      color: #ffffff;
+      font-size: 13px;
+      text-shadow: 0 1px 4px rgba(60,60,100,0.2);
+    }
+
+    .detail-footer a {
+      color: white;
+      font-weight: bold;
+    }
+
+    @media (max-width: 480px) {
+      .detail-wrap {
+        padding: 18px 14px 35px;
+      }
+
+      .detail-card {
+        padding: 18px;
+        border-radius: 21px;
+      }
+
+      .detail-icon {
+        width: 105px;
+        height: 105px;
+      }
+
+      .detail-title {
+        font-size: 23px;
+      }
+
+      .section-title {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="detail-wrap">
+
+    <!-- トップページに戻る -->
+    <a class="back-link" href="index.html">
+      ← トップページに戻る
+    </a>
+
+    <!-- アドオンの基本情報 -->
+    <section class="detail-card detail-header">
+
+      <img
+        class="detail-icon"
+        src="images/phoneaddon.png"
+        alt="スマホアドオンのアイコン"
+      >
+
+      <h1 class="detail-title">スマホアドオン</h1>
+
+      <p class="detail-subtitle">
+        そーちゃん製アドオン
+      </p>
+
+      <p class="detail-text">
+        Minecraftの世界にスマートフォンを追加！
+        便利なアプリや機能を使って、
+        いつものマイクラをもっと楽しもう！
+      </p>
+
+      
+<div class="detail-info">
+
+  <div class="info-item">
+    <div class="info-label">対応バージョン</div>
+    <div class="info-value">1.21.90 以上</div>
+  </div>
+
+  <div class="info-item">
+    <div class="info-label">アドオンバージョン</div>
+    <div class="info-value">5.1.13</div>
+  </div>
+
+  <div class="info-item">
+    <div class="info-label">ファイル容量</div>
+    <div class="info-value">約0.21 MB</div>
+  </div>
+
+  <div class="info-item">
+    <div class="info-label">ファイル形式</div>
+    <div class="info-value">.mcaddon（BP + RP）</div>
+  </div>
+
+</div>
+
+
+      </>
+    </section>
+
+    <!-- ダウンロード -->
+    <section class="detail-card">
+
+      <h2 class="section-title">ダウンロード</h2>
+
+      <p class="detail-text">
+        下のボタンからアドオンをダウンロードできます。
+        ダウンロードしたファイルを開くと、
+        Minecraftにインポートできます。
+      </p>
+
+      <a
+        class="download-button"
+        href="addons/Minecraft phone ver5.1.3.mcaddon"
+        download
+      >
+        ↓ アドオンをダウンロード
+      </a>
+
+      <p class="download-note">
+        ※Minecraftのバージョンや環境によって
+        正常に動作しない場合があります。
+      </p>
+
+    </section>
+
+    
+<!-- アプリ・機能紹介 -->
+<section class="detail-card">
+
+  <h2 class="section-title">スマホのアプリ・機能</h2>
+
+  <p class="detail-text">
+    Minecraftの世界で使える多機能スマートフォン！
+    アカウントを作成すると、プロフィールやフレンド、
+    メール、銀行、ネットショップなど、
+    さまざまな機能を利用できます。
+  </p>
+
+  <!-- アカウント -->
+  <div class="feature-item">
+    <h3>◆ アカウント・ログイン</h3>
+    <p>
+      スマートフォンを初めて開くと、アカウント作成または
+      ログインを選択できます。
+    </p>
+    <p>
+      アカウント作成では、IDとパスワードを設定します。
+      作成したアカウントにログインすると、
+      プロフィールや銀行残高、フレンド、メール、
+      投稿などのアカウントデータを利用できます。
+    </p>
+    <p>
+      アカウントからログアウトすることもできます。
+    </p>
+  </div>
+
+  <!-- プロフィール -->
+  <div class="feature-item">
+    <h3>@ プロフィール</h3>
+    <p>
+      自分やほかのプレイヤーのプロフィールを確認できます。
+    </p>
+    <p>
+      表示名や自己紹介を設定・編集でき、
+      プロフィールから投稿や出品商品を確認できます。
+    </p>
+    <p>
+      フレンドのプロフィールを開いたり、
+      相手の投稿やショップを見たりすることもできます。
+    </p>
+  </div>
+
+  <!-- フレンド -->
+  <div class="feature-item">
+    <h3>● フレンド</h3>
+    <p>
+      プレイヤー同士でフレンド登録ができる機能です。
+    </p>
+    <p>
+      フレンドのプロフィールを確認したり、
+      フレンド申請を送ったり、届いた申請を確認して
+      承認・対応したりできます。
+    </p>
+    <p>
+      登録したフレンドの一覧を確認でき、
+      フレンドを解除することもできます。
+    </p>
+  </div>
+
+  <!-- メール -->
+  <div class="feature-item">
+    <h3>✉ メール</h3>
+    <p>
+      プレイヤー同士でメッセージを送受信できる機能です。
+    </p>
+    <p>
+      相手とのメッセージのやり取りを確認したり、
+      新しいメッセージを送ったりできます。
+    </p>
+    <p>
+      フレンドとのグループを作成して、
+      複数人でメッセージをやり取りすることもできます。
+    </p>
+    <p>
+      メールにはプレゼント機能もあり、
+      相手にプレゼントを送ったり、
+      受け取ったプレゼントを確認・受け取りしたりできます。
+    </p>
+  </div>
+
+  <!-- 通知 -->
+  <div class="feature-item">
+    <h3>! 通知</h3>
+    <p>
+      スマートフォン内の各種通知を確認できます。
+    </p>
+    <p>
+      メールやフレンド、銀行、ネットショップ、
+      プレゼントなどに関連する通知が届きます。
+    </p>
+    <p>
+      通知を選択すると、関連するアプリを
+      直接開くことができます。
+    </p>
+    <p>
+      通知を既読にしたり、すべての通知を
+      まとめて既読にしたりすることもできます。
+    </p>
+    <p>
+      オンライン中は新しい通知をチャット欄や
+      通知音で知らせる機能も搭載しています。
+    </p>
+  </div>
+
+  <!-- 銀行 -->
+  <div class="feature-item">
+    <h3>￥ 銀行</h3>
+    <p>
+      スマートフォン内でゲーム内のお金を管理する機能です。
+    </p>
+    <p>
+      プレイヤー同士でのお金の送金や、
+      ほかのプレイヤーからの送金の受け取りができます。
+    </p>
+    <p>
+      相手にお金を請求したり、
+      届いた請求に対して支払いを行ったりできます。
+    </p>
+    <p>
+      銀行の取引履歴から、
+      過去の入出金などの記録を確認できます。
+    </p>
+    <p>
+      送金や請求などに関連する通知も受け取れます。
+    </p>
+  </div>
+
+  <!-- SNS・投稿 -->
+  <div class="feature-item">
+    <h3># 投稿・SNS</h3>
+    <p>
+      スマートフォンから文章を投稿できる機能です。
+    </p>
+    <p>
+      新しい投稿を作成したり、
+      みんなの投稿や自分の投稿を確認したりできます。
+    </p>
+    <p>
+      ほかのプレイヤーの投稿に「いいね」を付けたり、
+      いいねを取り消したりできます。
+    </p>
+    <p>
+      投稿へのコメントや、
+      投稿者のプロフィールを確認する機能もあります。
+    </p>
+    <p>
+      自分がいいねした投稿を一覧から確認できます。
+    </p>
+  </div>
+
+  <!-- 電卓 -->
+  <div class="feature-item">
+    <h3>= 電卓</h3>
+    <p>
+      スマートフォン内で計算ができる電卓機能です。
+    </p>
+    <p>
+      2つの数値を入力し、
+      用意された演算を選択して計算できます。
+    </p>
+    <p>
+      アイテムの売買価格や所持金の計算など、
+      ワールド内での計算に活用できます。
+    </p>
+  </div>
+
+  <!-- メモ・ノート -->
+  <div class="feature-item">
+    <h3>✎ ノート・メモ</h3>
+    <p>
+      スマートフォン内にメモを保存・管理できる機能です。
+    </p>
+    <p>
+      メモの作成、内容の編集、名前の変更、
+      削除などができます。
+    </p>
+    <p>
+      メモをファイルごとに分類して整理できます。
+      ファイルの追加・名前変更・削除や、
+      メモを別のファイルへ移動することもできます。
+    </p>
+    <p>
+      ワールド内の座標を保存する機能も搭載。
+      保存した地点の名前や座標をメモとして
+      管理できます。
+    </p>
+  </div>
+
+  <!-- ネットショップ -->
+  <div class="feature-item">
+    <h3>■ ネットショップ・フリーマーケット</h3>
+    <p>
+      プレイヤー同士でアイテムを出品・購入できる機能です。
+    </p>
+    <p>
+      インベントリ内のアイテムを選択して出品でき、
+      アイテム単品だけでなく、
+      複数のアイテムをまとめたセット出品にも対応しています。
+    </p>
+    <p>
+      出品する価格を設定したり、
+      自分の出品商品の価格を変更したりできます。
+      出品を取り消すと、対象のアイテムが戻ります。
+    </p>
+    <p>
+      商品一覧から出品商品を確認し、
+      商品の詳細を見て購入できます。
+      ほかのプレイヤーのショップを開いて、
+      そのプレイヤーの商品を確認することもできます。
+    </p>
+    <p>
+      気になる商品をお気に入りに登録する
+      ウィッシュリスト機能を搭載しています。
+    </p>
+    <p>
+      購入履歴や販売履歴を確認でき、
+      注文の配送状況も確認できます。
+    </p>
+    <p>
+      商品の購入が完了すると、
+      購入したアイテムがプレイヤーに届けられます。
+    </p>
+  </div>
+
+  <!-- 管理者アプリ -->
+  <div class="feature-item">
+    <h3># 管理者アプリ</h3>
+    <p>
+      ワールド運営者向けの管理機能です。
+      管理者用のアクセス権限がある場合に表示されます。
+    </p>
+    <p>
+      プレイヤーに phone_op タグを付与すると、
+      管理者アプリを利用できます。
+    </p>
+    <p>
+      お金の追加・減額・所持金の設定や、
+      各アカウントの所持金確認ができます。
+    </p>
+    <p>
+      アカウント検索では、登録されたアカウントの
+      プロフィールや所持金、フレンド数、
+      ショップ売上累計、SNS投稿数などを確認できます。
+    </p>
+    <p>
+      アカウントのBAN・BAN解除や、
+      BAN中のアカウントと理由の確認にも対応しています。
+    </p>
+    <p>
+      オンライン中のプレイヤーに向けた
+      全体お知らせを送信できます。
+    </p>
+    <p>
+      ワールド情報では、登録アカウント数、
+      オンライン人数、ショップの購入記録や売上、
+      銀行取引記録、SNS投稿数などを確認できます。
+    </p>
+  </div>
+
+</section>
+
+
+    <!-- 注意事項 -->
+    <section class="detail-card">
+
+      <h2 class="section-title">注意事項</h2>
+
+      <div class="notice-item">
+        Minecraft Bedrock版向けのアドオンです。
+        Java版では使用できません。
+      </div>
+
+      <div class="notice-item">
+        ワールドや他のアドオンとの組み合わせによっては、
+        正常に動作しない場合があります。
+      </div>
+
+      <div class="notice-item">
+        アドオンの導入や使用は自己責任でお願いします。
+        大切なワールドは事前にバックアップしてください。
+      </div>
+
+      <div class="notice-item">
+        管理者アプリを利用するには、
+        対象プレイヤーに phone_op タグを付与してください。
+      </div>
+
+    </section>
+
+    <!-- 更新履歴 -->
+    <section class="detail-card">
+
+      <h2 class="section-title">更新履歴</h2>
+
+      <div class="update-item">
+        <div class="update-date">最新版</div>
+        <div class="update-text">
+          ショップ・銀行・プロフィールなどの機能を搭載。
+        </div>
+      </div>
+
+      <div class="update-item">
+        <div class="update-date">今後の更新</div>
+        <div class="update-text">
+          新機能や不具合修正などを随時追加予定。
+        </div>
+      </div>
+
+    </section>
+
+    <!-- フッター -->
+    <footer class="detail-footer">
+      <p>制作：そーちゃん</p>
+      <a href="index.html">トップページへ戻る</a>
+    </footer>
+
+  </main>
+
+</body>
+</html>
