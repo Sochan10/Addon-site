@@ -1,0 +1,337 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: sans-serif;
+  color: #27334c;
+
+  background: linear-gradient(
+    160deg,
+    #05c5e8 0%,
+    #73c9f5 42%,
+    #b2b4f4 75%,
+    #d7a9ed 100%
+  );
+  background-attachment: fixed;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 20px 24px 35px;
+}
+
+/* ヘッダー */
+
+.profile {
+  text-align: center;
+  color: white;
+  padding: 12px 0 20px;
+}
+
+.creator-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 22px;
+}
+
+.site-title {
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 900;
+  margin: 0 0 16px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 auto 20px;
+}
+
+/* SNSボタン */
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.85);
+  color: #59698e;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+/* セクション見出し */
+
+.section-label {
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 24px 0 14px;
+}
+
+/* アドオンカード */
+
+.addon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.addon-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  width: 100%;
+  min-height: 0;
+  padding: 16px 20px;
+
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 25px;
+
+  box-shadow: 0 8px 24px rgba(55,70,120,.12);
+
+  color: #28334b;
+  text-decoration: none;
+}
+
+.addon-icon {
+  width: 82px;
+  height: 82px;
+  flex: 0 0 82px;
+
+  border-radius: 20px;
+  object-fit: cover;
+
+  background: linear-gradient(
+    135deg,
+    #d9f7ff,
+    #e9ddff
+  );
+}
+
+.addon-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.addon-info h2 {
+  font-size: 21px;
+  line-height: 1.35;
+  margin: 0 0 6px;
+}
+
+.addon-info p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #69758c;
+  margin: 0;
+}
+
+.arrow {
+  font-size: 26px;
+  color: #8791a8;
+  flex-shrink: 0;
+}
+
+/* 利用規約 */
+
+.notice {
+  margin-top: 30px;
+  padding: 22px;
+
+  border-radius: 28px;
+  background: rgba(255,255,255,.82);
+
+  box-shadow: 0 8px 24px rgba(55,70,120,.10);
+}
+
+.notice-title {
+  font-size: 21px;
+  line-height: 1.4;
+  margin: 8px 0 18px;
+}
+
+.notice-card {
+  padding: 18px;
+  margin-top: 12px;
+
+  border-radius: 20px;
+  background: rgba(255,255,255,.82);
+}
+
+.notice-card h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.notice-card p,
+.notice-card li {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #59647a;
+}
+
+.notice-card ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.footer {
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  margin-top: 22px;
+}
+
+/* スマホ向け */
+
+@media (max-width: 600px) {
+  .wrap {
+    padding: 16px 20px 30px;
+  }
+
+  .profile {
+    padding: 10px 0 16px;
+  }
+
+  .creator-icon {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 18px;
+  }
+
+  .site-title {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    font-size: 15px;
+    margin-bottom: 17px;
+  }
+
+  .social-button {
+    width: 54px;
+    height: 54px;
+    font-size: 19px;
+  }
+
+  .section-label {
+    margin: 20px 0 12px;
+  }
+
+  .addon-card {
+    gap: 14px;
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .addon-icon {
+    width: 76px;
+    height: 76px;
+    flex-basis: 76px;
+    border-radius: 17px;
+  }
+
+  .addon-info h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .addon-info p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .arrow {
+    font-size: 23px;
+  }
+
+  .notice {
+    margin-top: 24px;
+    padding: 18px;
+    border-radius: 23px;
+  }
+
+  .notice-title {
+    font-size: 19px;
+    margin: 6px 0 14px;
+  }
+
+  .notice-card {
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 17px;
+  }
+
+  .notice-card h3 {
+    font-size: 16px;
+  }
+
+  .notice-card p,
+  .notice-card li {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 390px) {
+  .wrap {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .addon-card {
+    gap: 11px;
+    padding: 12px;
+  }
+
+  .addon-icon {
+    width: 66px;
+    height: 66px;
+    flex-basis: 66px;
+    border-radius: 15px;
+  }
+
+  .addon-info h2 {
+    font-size: 16px;
+  }
+
+  .addon-info p {
+    font-size: 12px;
+  }
+
+  .arrow {
+    font-size: 21px;
+  }
+
+  .notice {
+    padding: 15px;
+  }
+}
+.social-button img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
